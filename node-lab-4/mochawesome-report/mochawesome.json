@@ -1,0 +1,136 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 3,
+    "pending": 0,
+    "failures": 1,
+    "start": "2018-04-12T08:41:55.016Z",
+    "end": "2018-04-12T08:41:55.477Z",
+    "duration": 461,
+    "testsRegistered": 4,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "warning",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "uuid": "c27231d8-3cc8-480c-958e-04ddfab15ae4",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "2e017490-6985-42c0-9b5f-eb33c4a51622",
+        "title": "Contacts API unit test",
+        "fullFile": "C:\\Users\\Paul\\Desktop\\NodeAPI\\node-labs-2018\\node-lab-4\\test\\testContactsApi.js",
+        "file": "\\test\\testContactsApi.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "should return collection of JSON documents",
+            "fullTitle": "Contacts API unit test should return collection of JSON documents",
+            "timedOut": false,
+            "duration": 273,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "// calling home page api\n(0, _supertest2.default)(_index.app).get('/api/contacts').expect('Content-type', /json/).expect(200) // This is the HTTP response\n.end(function (err, res) {\n    // HTTP status should be 200\n    res.status.should.equal(200);\n    done();\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "563f6f75-1d17-47b1-ab7d-3f562dfe0f97",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "should add a contact",
+            "fullTitle": "Contacts API unit test should add a contact",
+            "timedOut": false,
+            "duration": 74,
+            "state": "passed",
+            "speed": "medium",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "// post to /api/contacts\n(0, _supertest2.default)(_index.app).post('/api/contacts').send({ name: 'Contact 99', address: '123 Strand St' }).expect('Content-type', /json/).expect(201).end(function (err, res) {\n    res.status.should.equal(201);\n    res.body.should.have.property('_id');\n    res.body.name.should.equal('Contact 99');\n    done();\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "d5f760bf-86ff-43ac-8e40-97f640f81cab",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "should delete contact",
+            "fullTitle": "Contacts API unit test should delete contact",
+            "timedOut": false,
+            "duration": 59,
+            "state": "passed",
+            "speed": "medium",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "var superserver = (0, _supertest2.default)(_index.app);\nsuperserver.get('/api/contacts').expect('Content-type', /json/).expect(200) // This is HTTP response\n.end(function (err, res) {\n    var id = res.body[0]._id;\n    superserver.delete('/api/contacts/' + id).expect('Content-type', /json/).expect(200) // This is HTTP response\n    .end(function (err, res) {\n        res.status.should.equal(204);\n        done();\n    });\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "93137c25-3475-41ce-9e6d-2fc2605f2b36",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "should update a single contact on api/contacts/[:id]",
+            "fullTitle": "Contacts API unit test should update a single contact on api/contacts/[:id]",
+            "timedOut": false,
+            "duration": 0,
+            "state": "failed",
+            "pass": false,
+            "fail": true,
+            "pending": false,
+            "code": "var superserver = (0, _supertest2.default)(_index.app);\nsuperserver.post('/api/contacts').send({ name: 'Contact 99', address: '123 Strand St' }).expect('Content-type', /json/).expect(201).end(function (err, res) {\n    var id = res.body[0]._id;\n    superserver.put('/api/contacts/' + id).send({ name: 'Contact 99', address: '321 Strand St' }).expect('Content-type', /json/).expect(200) // This is HTTP response\n    .end(function (err, res) {\n        // res.status.should.equal(404);\n        // res.body.should.have.property('UPDATED');\n        // res.body.should.have.property('_id');\n        // res.body.should.have.property('name');\n        // res.body.should.have.property('address');\n        res.body.UPDATED.name.should.equal('Contact 79');\n        // res.body.address.should.equal('456 Summerville Ave');\n        done();\n    });\n});",
+            "err": {
+              "message": "TypeError: Cannot read property '_id' of undefined",
+              "estack": "TypeError: Cannot read property '_id' of undefined\n    at Test.<anonymous> (C:/Users/Paul/Desktop/NodeAPI/node-labs-2018/node-lab-4/test/testContactsApi.js:66:32)\n    at Test.assert (node_modules\\supertest\\lib\\test.js:179:6)\n    at Server.assert (node_modules\\supertest\\lib\\test.js:131:12)\n    at emitCloseNT (net.js:1655:8)\n    at _combinedTickCallback (internal/process/next_tick.js:135:11)\n    at process._tickCallback (internal/process/next_tick.js:180:9)"
+            },
+            "isRoot": false,
+            "uuid": "9a520252-994e-469b-acef-90c5c65fcc74",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "563f6f75-1d17-47b1-ab7d-3f562dfe0f97",
+          "d5f760bf-86ff-43ac-8e40-97f640f81cab",
+          "93137c25-3475-41ce-9e6d-2fc2605f2b36"
+        ],
+        "failures": [
+          "9a520252-994e-469b-acef-90c5c65fcc74"
+        ],
+        "pending": [],
+        "skipped": [],
+        "duration": null,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 120000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 2000
+  },
+  "copyrightYear": 2018
+}
